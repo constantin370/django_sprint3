@@ -1,6 +1,8 @@
-# ice_cream/admin.py
 from django.contrib import admin
-from .models import Location, Category, Post
+
+from blog.models import Category
+from blog.models import Location
+from blog.models import Post
 
 admin.site.empty_value_display = 'Не задано'
 admin.site.register(Location)

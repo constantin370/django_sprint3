@@ -1,8 +1,11 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from core.models import PublishedModel, Title
 
-# Create your models here.
+from core.models import PublishedModel
+from core.models import Title
+
+
+User = get_user_model()
 
 
 class Category(PublishedModel, Title):
@@ -17,6 +20,9 @@ class Category(PublishedModel, Title):
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
 
+    def __str__(self):
+        return self.title
+
 
 class Location(PublishedModel):
     name = models.CharField(max_length=256, verbose_name='Название места')
@@ -25,8 +31,8 @@ class Location(PublishedModel):
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'
 
-
-User = get_user_model()
+    def __str__(self):
+        return self.name
 
 
 class Post(PublishedModel, Title):
