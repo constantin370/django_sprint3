@@ -1,6 +1,6 @@
-from django.shortcuts import get_object_or_404, render
+import datetime
 
-from django.utils import timezone
+from django.shortcuts import get_object_or_404, render
 
 from blog.models import Post
 from blog.models import Category
@@ -8,7 +8,7 @@ from blog.models import Category
 
 POSTS_PUBLISHED = Post.objects.select_related(
     'category', 'location', 'author').filter(
-        pub_date__lte=timezone.now(),
+        pub_date__lte=datetime.datetime.now(),
         is_published=True,
         category__is_published=True)
 
