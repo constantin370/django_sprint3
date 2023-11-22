@@ -1,6 +1,6 @@
-import datetime
-
 from django.shortcuts import get_object_or_404, render
+
+from django.db.models.functions import Now
 
 from blog.models import Post
 from blog.models import Category
@@ -8,7 +8,7 @@ from blog.models import Category
 
 POSTS_PUBLISHED = Post.objects.select_related(
     'category', 'location', 'author').filter(
-        pub_date__lte=datetime.datetime.now(),
+        pub_date__lte=Now(),
         is_published=True,
         category__is_published=True)
 
